@@ -39,18 +39,12 @@ Respuesta en formato JSON:
 ## Estructura del proyecto
 
 **src/**  
-  **main/java/conversor/**  
-    **models/**  
+  **main/java/conversor/** 
       Modelos de datos (`RespuestaConversion.java`)  
-    **services/**  
-      Consumo de API externa (`ApiService.java`)  
-    **presentation/**  
-      **views/**  
-        Pantalla principal y menú interactivo (`Menu.java`)  
-      **widgets/**  
-        Lógica de conversión (`Conversor.java`)  
-    **Main.java**  
-      Punto de entrada de la aplicación  
+      Consumo de API externa (`ApiService.java`) 
+      Pantalla principal y menú interactivo (`Menu.java`)  
+      Lógica de conversión (`Conversor.java`)  
+    **Main.java**  Punto de entrada de la aplicación  
 
 **conversiones/**  
     Archivos `.json` generados con cada conversión  
