@@ -35,4 +35,33 @@ public class ApiService {
             return 0;
         }
     }
+
+
+
+    public RespuestaConversion obtenerConversionJson(String base, String destino, double monto) {
+        try {
+            String urlStr = "https://v6.exchangerate-api.com/v6/" + API_KEY + "/pair/" + base + "/" + destino;
+            URL url = new URL(urlStr);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line);
+            }
+            reader.close();
+
+            JsonObject json = JsonParser.parseString(response.toString()).getAsJsonObject();
+            double rate = json.get("conversion_rate").getAsDouble();
+            double resultado = monto * rate;
+
+            return new RespuestaConversion(base, destino, monto, rate, resultado);
+
+        } catch (Exception e) {
+            System.out.println("Error al conectar con la API: " + e.getMessage());
+            return null;
+        }
+    }
 }
